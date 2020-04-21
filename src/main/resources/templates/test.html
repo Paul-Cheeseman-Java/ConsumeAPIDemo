@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+
+Has this worked...? Is there a table????" 
+
+
+<table>
+ <tr>
+   <th>Title</th>
+   <th>url</th>
+ </tr>
+    <tr th:each="img: ${images}">
+        <td th:text="${img.title}" />
+        <td th:text="${img.url}" />
+    </tr>
+</table>
+
+
+</body>
+</html>
