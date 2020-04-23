@@ -1,4 +1,4 @@
-package com.spacepics.demo;
+package com.consumepicsapi.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
