@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +19,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,41 +51,16 @@ public class ConsumePicsAPI {
 	}
 
 	//HomePage
+	/*
 	@GetMapping("/")
-	public ModelAndView index(RestTemplate restTemplate, ModelAndView modelView) {
+	public ModelAndView index(RestTemplate restTemplate) {
 	
 		ModelAndView mv = new ModelAndView("index");
 		ArrayList<ImgDetails> images = new ArrayList<>();		
-
-		//Response response = restTemplate.getForObject("https://api.unsplash.com/search/photos/?query=nebular&client_id=90YYoDZw5-bfZlZFvWqcQd5YdrXj_BVLJsoyO8ZB2nU&page=1", Response.class);
-		/*
-		Response response = restTemplate.getForObject("https://api.unsplash.com/search/photos/"
-				+ "?query=nebular&client_id=90YYoDZw5-bfZlZFvWqcQd5YdrXj_BVLJsoyO8ZB2nU&page=1", Response.class);
-		
-		Response response = restTemplate.getForObject("https://api.unsplash.com/search/photos/"
-				+ "?query=nebular&client_id=90YYoDZw5-bfZlZFvWqcQd5YdrXj_BVLJsoyO8ZB2nU&page=1", Response.class);
-
-		*/
-		
-		
-		//Response response = restTemplate.getForObject("https://api.unsplash.com/search/photos/?"
-		//		+ "query=galaxy+background&client_id=90YYoDZw5-bfZlZFvWqcQd5YdrXj_BVLJsoyO8ZB2nU&page=1", Response.class);
-				
 		
 		Response response = restTemplate.getForObject("https://api.unsplash.com/search/photos/?"
-				+ "query=countryside&orientation=landscape&client_id=90YYoDZw5-bfZlZFvWqcQd5YdrXj_BVLJsoyO8ZB2nU&page=1", Response.class);
+				+ "query=galaxy+wallpaper&orientation=landscape&client_id=90YYoDZw5-bfZlZFvWqcQd5YdrXj_BVLJsoyO8ZB2nU&page=1", Response.class);	
 				
-		
-		
-		
-		
-		//landscape only???
-		//https://images.unsplash.com/photo-1516331138075-f3adc1e149cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyOTE4OX0&w=2560&h=1600&dpr=3
-		//https://images.unsplash.com/photo-1516331138075-f3adc1e149cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyOTE4OX0&w=2560&h=1600&dpr=3
-
-		//pr is photo density:
-		//https://docs.imgix.com/apis/url/pixel-density/dpr
-		
 		for (Result res : response.getResults()) {
 			String url = res.getUrls().getRaw() + "&w=2560&h=1600&fit=scale";
 			String name = res.getUser().getName();
@@ -100,13 +78,49 @@ public class ConsumePicsAPI {
 		
 		return mv;
 	}
+	*/
 
 	
+	@GetMapping("/")
+	public ModelAndView test2(RestTemplate restTemplate, HttpServletRequest request) {
 	
+		log.info("TEST GET HIT!!!!");
+		log.info("type: " +request.getParameter("type"));
+		
+		Response response;
+		if (request.getParameter("type") != null) {
+			String type = request.getParameter("type");
+			if (type.equals("Animals") || type.equals("Art")) {
+				response = restTemplate.getForObject("https://api.unsplash.com/search/photos/?"
+						+ "query=" + type + "&orientation=landscape&client_id=90YYoDZw5-bfZlZFvWqcQd5YdrXj_BVLJsoyO8ZB2nU&page=1", Response.class);			
+			}
+			else {
+				response = restTemplate.getForObject("https://api.unsplash.com/search/photos/?"
+						+ "query=galaxy+wallpaper&orientation=landscape&client_id=90YYoDZw5-bfZlZFvWqcQd5YdrXj_BVLJsoyO8ZB2nU&page=1", Response.class);						
+			}
+		}
+		else {
+			response = restTemplate.getForObject("https://api.unsplash.com/search/photos/?"
+					+ "query=galaxy+wallpaper&orientation=landscape&client_id=90YYoDZw5-bfZlZFvWqcQd5YdrXj_BVLJsoyO8ZB2nU&page=1", Response.class);						
+		}
+		
+		ModelAndView mv = new ModelAndView("index");
+		ArrayList<ImgDetails> images = new ArrayList<>();		
+		
+		for (Result res : response.getResults()) {
+			String url = res.getUrls().getRaw() + "&w=2560&h=1600&fit=scale";
+			String name = res.getUser().getName();
+			String description = res.getDescription();
 
-	
+			//Removing the promoted images from 'Galaxy Background' search API results
+			if (!name.equals("Harley-Davidson")) {
+				ImgDetails imgDetails = new ImgDetails(url, name, description);
+				images.add(imgDetails);
+			}
+		}
 
-
-	
-
+		mv.addObject("images", images);
+		
+		return mv;
+	}
 }
