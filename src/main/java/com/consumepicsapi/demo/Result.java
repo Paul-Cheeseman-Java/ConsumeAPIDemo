@@ -5,21 +5,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Result {
 
-	String id;
-	URL urls;
+	private String description;
+	private URL urls;
+	private User user;
 	
 	public Result() {
 		
 	}
 
-		
-	public String getId() {
-		return id;
+	
+	public String getDescription() {
+		return description;
 	}
 
 
-	public void setId(String id) {
-		this.id = id;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
@@ -33,6 +34,18 @@ public class Result {
 	}
 
 
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	
+	
 
 
 
