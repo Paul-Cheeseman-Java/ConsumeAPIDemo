@@ -50,44 +50,10 @@ public class ConsumePicsAPI {
 		return builder.build();
 	}
 
-	//HomePage
-	/*
-	@GetMapping("/")
-	public ModelAndView index(RestTemplate restTemplate) {
-	
-		ModelAndView mv = new ModelAndView("index");
-		ArrayList<ImgDetails> images = new ArrayList<>();		
-		
-		Response response = restTemplate.getForObject("https://api.unsplash.com/search/photos/?"
-				+ "query=galaxy+wallpaper&orientation=landscape&client_id=90YYoDZw5-bfZlZFvWqcQd5YdrXj_BVLJsoyO8ZB2nU&page=1", Response.class);	
-				
-		for (Result res : response.getResults()) {
-			String url = res.getUrls().getRaw() + "&w=2560&h=1600&fit=scale";
-			String name = res.getUser().getName();
-			String description = res.getDescription();
-
-			//Removing the promoted images from 'Galaxy Background' search API results
-			if (!name.equals("Harley-Davidson")) {
-				ImgDetails imgDetails = new ImgDetails(url, name, description);
-				images.add(imgDetails);
-			}
-		}
-
-
-		mv.addObject("images", images);
-		
-		return mv;
-	}
-	*/
-
 	
 	@GetMapping("/")
-	public ModelAndView test2(RestTemplate restTemplate, HttpServletRequest request) {
-	
-		log.info("TEST GET HIT!!!!");
-		log.info("type: " +request.getParameter("type"));
-		
-		Response response;
+	public ModelAndView index(RestTemplate restTemplate, HttpServletRequest request) {
+			Response response;
 		if (request.getParameter("type") != null) {
 			String type = request.getParameter("type");
 			if (type.equals("Animals") || type.equals("Art")) {
@@ -106,21 +72,21 @@ public class ConsumePicsAPI {
 		
 		ModelAndView mv = new ModelAndView("index");
 		ArrayList<ImgDetails> images = new ArrayList<>();		
+		int imgNumber = 0;
 		
 		for (Result res : response.getResults()) {
 			String url = res.getUrls().getRaw() + "&w=2560&h=1600&fit=scale";
 			String name = res.getUser().getName();
-			String description = res.getDescription();
-
+			imgNumber = imgNumber + 1;
+			
 			//Removing the promoted images from 'Galaxy Background' search API results
 			if (!name.equals("Harley-Davidson")) {
-				ImgDetails imgDetails = new ImgDetails(url, name, description);
+				ImgDetails imgDetails = new ImgDetails(url, name, imgNumber);
 				images.add(imgDetails);
 			}
 		}
 
 		mv.addObject("images", images);
-		
 		return mv;
 	}
 }

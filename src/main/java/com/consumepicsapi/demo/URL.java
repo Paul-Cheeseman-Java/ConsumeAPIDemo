@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class URL {
 
-	String raw;
-	String thumb;
+	private String raw;
+	private String thumb;
 	
 	public URL() {
 		

@@ -2,15 +2,15 @@ package com.consumepicsapi.demo;
 
 public class ImgDetails {
 		
-	String url;
-	String name;
-	String description;
+	private String url;
+	private String name;
+	private int number;
 	
-	public ImgDetails(String url, String name, String description) {
+	public ImgDetails(String url, String name, int number) {
 		super();
 		this.url = url;
 		this.name = name;
-		this.description = description;
+		this.number = number;
 	}
 	
 	public String getUrl() {
@@ -25,12 +25,14 @@ public class ImgDetails {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
+
+	public int getNumber() {
+		return number;
 	}
 
+	public void setNumber(int number) {
+		this.number = number;
+	}
 	
+		
 }

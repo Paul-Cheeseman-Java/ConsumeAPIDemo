@@ -1,4 +1,9 @@
-.img {
-    height: 500px;
-    background-size: cover;
+
+.sy-caption-wrap .sy-caption {
+	font-size: 0.9em;
+	margin-top: 10em;
+}
+
+img {
+	white-space:pre
 }
