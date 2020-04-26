@@ -9,8 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.spacepics</groupId>
-	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>api-demo</artifactId>
+	<version>1.0.0</version>
+	<packaging>war</packaging>
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -46,21 +47,58 @@
     		<artifactId>jackson-databind</artifactId>
 		</dependency>
 
-
-		<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
-		<dependency>
-    		<groupId>org.codehaus.jackson</groupId>
-    		<artifactId>jackson-mapper-asl</artifactId>
-    		<version>1.9.13</version>
-		</dependency>
+        <dependency>
+            <groupId>com.github.jsimone</groupId>
+            <artifactId>webapp-runner</artifactId>
+            <version>9.0.27.1</version>
+            <scope>provided</scope>
+        </dependency>
 		
 	</dependencies>
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.2</version>
+					<configuration>
+						<verbose>true</verbose>
+						<source>1.8</source>
+						<target>1.8</target>
+						<showWarnings>true</showWarnings>
+					</configuration>
+				</plugin>
+      			<plugin>
+          			<groupId>org.apache.maven.plugins</groupId>
+          			<artifactId>maven-dependency-plugin</artifactId>
+          			<version>2.3</version>
+        			<executions>
+            			<execution>
+                			<phase>package</phase>
+                			<goals>
+                    			<goal>copy</goal>
+                			</goals>
+                			<configuration>
+                    			<artifactItems>
+                        			<artifactItem>
+                            			<groupId>com.github.jsimone</groupId>
+                            			<artifactId>webapp-runner</artifactId>
+                            			<version>${webapp-runner.version}</version>
+                            			<destFileName>webapp-runner.jar</destFileName>
+                        			</artifactItem>
+                    			</artifactItems>
+                			</configuration>
+            			</execution>
+        			</executions>
+      			</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
