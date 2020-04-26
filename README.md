@@ -1,7 +1,7 @@
 # MEETAPP
 
 ##### General info
-This project a basic website developed to explore setting up a website that pulls information from an API. This website retrieves photos from the unsplash API and displays them, along with the artists name within a screen sized carosel. 
+This project a basic website developed to explore setting up a website that pulls information from an API. This website retrieves photos from the unsplash API and displays them, along with the artists name, within a screen sized carosel. 
 
 The website can be accessed at www.https://dry-bayou-88760.herokuapp.com/
 
