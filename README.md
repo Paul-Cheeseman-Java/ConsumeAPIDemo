@@ -1,7 +1,7 @@
 # Consuming API Demo
 
 ### General info
-This project a basic website developed to explore setting up a website that pulls information from an API. This website retrieves photos from the unsplash API and displays them, along with the artists name, within a screen sized carousel. 
+This project is a basic website developed to explore setting up a website that pulls information from an API. The website retrieves photos from the unsplash API and displays them, along with the artists name, within a screen sized carousel. 
 
 The website can be accessed at https://consuming-api.herokuapp.com
 
