@@ -3,6 +3,7 @@ package com.consumepicsapi.demo;
 import org.springframework.boot.SpringApplication;
 
 
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
@@ -26,8 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-
-import org.codehaus.jackson.type.TypeReference;
 
 //import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
