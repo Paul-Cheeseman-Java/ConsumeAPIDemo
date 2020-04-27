@@ -15,7 +15,7 @@ Project is created with:
 * Java
 * Java Spring Boot (MVC) 
 * [Thymeleaf](https://www.thymeleaf.org/)
-* [Jackson] (https://github.com/FasterXML/jackson)
+* [Jackson](https://github.com/FasterXML/jackson)
 * Bootstrap
 * HTML/CSS
 
