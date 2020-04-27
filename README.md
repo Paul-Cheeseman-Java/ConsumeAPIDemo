@@ -13,7 +13,7 @@ The website can be accessed at https://consuming-api.herokuapp.com/
 ### Technologies
 Project is created with:
 * Java
-* Java Spring Boot (MVC) 
+* Spring Boot (Web) 
 * [Thymeleaf](https://www.thymeleaf.org/)
 * [Jackson](https://github.com/FasterXML/jackson)
 * Bootstrap
@@ -22,5 +22,4 @@ Project is created with:
 ### Credits
 The website was built using the following resources which were developed by other people:
 * [Bootstrapmade](https://bootstrapmade.com/) - Bootstrap theme site.
-* [Webapp Runner](https://github.com/heroku/webapp-runner) - Enables easier deployment of Java Web Applications to Heroku.
 * [Unsplash](https://unsplash.com/) - Source of images which enables a photographer to track usage when consumed by an API.
